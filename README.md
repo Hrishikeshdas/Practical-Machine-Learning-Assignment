@@ -43,7 +43,7 @@ plot(TrainTrainingSet$classe, col="blue", main="Plot of  variable classe of Trai
 ## Fit Discrete Tree Model
 ```{r}
 modelfit1 <- rpart(classe ~ ., data=TrainTrainingSet, method="class")
-predict1 <- predict(model1, TestTrainingSet, type = "class")
+predict1 <- predict(modelfit1, TestTrainingSet, type = "class")
 rpart.plot(modelfit1, main="Classification Tree", extra=102, under=TRUE, faclen=0)
 ```
 ## Confusion Matrix
@@ -54,7 +54,7 @@ confusionMatrix(predict1, TestTrainingSet$classe)
 ```{r}
 modelfit2 <- randomForest(classe ~. , data=TrainTrainingSet, method="class")
 predict2 <- predict(modelfit2, TestTrainingSet, type = "class")
-confusionMatrix(prediction2, TestTrainingSet$classe)
+confusionMatrix(predict2, TestTrainingSet$classe)
 ```
 ## Decision on which Prediction Model to Use:
 ## Random Forest algorithm performed better than Decision Trees. Accuracy for Random Forest model was 0.995 (95% CI: (0.993, 0.997)) compared to Decision Tree model with 0.739 (95% CI: (0.727, 0.752)). The Random Forests model is choosen. The expected out-of-sample error is estimated at 0.005, or 0.5%.
